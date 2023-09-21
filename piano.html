@@ -65,40 +65,36 @@
 
 
 
-    const createIntervalC1 = () => {
-        return setInterval(() => {
-            let maximo = notesC1.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC1[num]);
-            playSound('C1/' + notesC1[num]);
-        }, 7000);
-    }
-
-
-    const createIntervalC2 = (time) => {
-        return setInterval(() => {
-            let maximo = notesC2.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC2[num]);
-            playSound('C2/' + notesC2[num]);
-        }, time);
-    }
-
-
-
-    const createIntervalC4 = (time) => {
-        return setInterval(() => {
-            let maximo = notesC4.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC4[num]);
-            playSound('C4/' + notesC4[num]);
-        }, time);
-    }
-
-
+    // const createIntervalC1 = () => {
+    //     return setInterval(() => {
+    //         let maximo = notesC1.length - 1;
+    //         let minimo = 0;
+    //         let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //         console.log(notesC1[num]);
+    //         playSound('C1/' + notesC1[num]);
+    //     }, 7000);
+    // }
+    // const createIntervalC2 = (time) => {
+    //     return setInterval(() => {
+    //         let maximo = notesC2.length - 1;
+    //         let minimo = 0;
+    //         let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //         console.log(notesC2[num]);
+    //         playSound('C2/' + notesC2[num]);
+    //     }, time);
+    // }
+    // const createIntervalC4 = (time) => {
+    //     return setInterval(() => {
+    //         let maximo = notesC4.length - 1;
+    //         let minimo = 0;
+    //         let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //         console.log(notesC4[num]);
+    //         playSound('C4/' + notesC4[num]);
+    //     }, time);
+    // }
+    
+    
+    
     const createIntervalC5 = (time) => {
         return setInterval(() => {
             let maximo = notesC5.length - 1;
@@ -113,21 +109,73 @@
 
 
 
-
-
-
-
-
-    const execution2min = () => {
-
-        console.log("2 min");
-        
+    const executionC1 = () => {
         let maximo = notesC1.length - 1;
         let minimo = 0;
         let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
         console.log(notesC1[num]);
         playSound('C1/' + notesC1[num]);
+    }
 
+    const executionC2 = () => {
+        let maximo = notesC2.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC2[num]);
+        playSound('C2/' + notesC2[num]);
+    }
+
+    const executionC3 = () => {
+        let maximo = notesC3.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC3[num]);
+        playSound('C3/' + notesC3[num]);
+    }
+
+    const executionC4 = () => {
+        let maximo = notesC4.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC4[num]);
+        playSound('C4/' + notesC4[num]);
+    }
+
+    const executionC5 = () => {
+        let maximo = notesC5.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC5[num]);
+        playSound('C5/' + notesC5[num]);
+    }
+
+    const executionC6 = () => {
+        let maximo = notesC6.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC6[num]);
+        playSound('C6/' + notesC6[num]);
+    }
+
+    const executionC7 = () => {
+        let maximo = notesC7.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC7[num]);
+        playSound('C7/' + notesC7[num]);
+    }
+
+
+
+
+
+
+
+    const execution2min = (time) => {
+
+        console.log("2 min");
+
+        return setInterval(executionC1, time);        
     }
 
 
@@ -147,8 +195,15 @@
         // const intervalC5 = createIntervalC5(2000);
 
 
-        setInterval(execution2min, 2 * 60 * 1000);
+        //setInterval(execution2min, 1 * 60 * 1000);
+        
+        const intervalA = execution2min(4000);
        
+        console.log(intervalA);
+
+
+
+
 
 
 
@@ -161,16 +216,10 @@
     
 
 
-    const find = () => {
-
-        console.log("pasaaa");
-
-    } 
-
-
-
-
-    document.addEventListener('DOMContentLoaded', find);
+    // const find = () => {
+    //     console.log("pasaaa");
+    // } 
+    // document.addEventListener('DOMContentLoaded', find);
 
 
 
