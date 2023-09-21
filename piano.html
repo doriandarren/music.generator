@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Piano Virtual</title>
+    <style>
+        /* Estilos para las teclas del piano */
+        .white-key {
+            width: 50px;
+            height: 200px;
+            background-color: white;
+            border: 1px solid black;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .black-key {
+            width: 30px;
+            height: 120px;
+            background-color: black;
+            border: 1px solid black;
+            display: inline-block;
+            margin-right: 2px;
+            margin-left: -15px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#" onclick="start()"> Inicio</a>
+
+<script>
+
+    // Función para manejar el evento de presionar una tecla
+    function playSound(note) {
+        
+        console.log(note);
+        const audio = new Audio(`sounds/${note}.mp3`); // Asegúrate de tener archivos de sonido en una carpeta llamada 'sounds'
+        
+        audio.muted = false;
+        audio.play();
+
+    }
+
+
+
+    let isC5Active = false;
+
+
+    const notesC1 = [
+        "C1-1", "C1-1-1", "C1-2", "C1-2-1", "C1-3", "C1-4", "C1-4-1", "C1-5", "C1-5-1", "C1-6", "C1-6-1", "C1-7"
+    ];
+
+    const notesC2 = [
+        "C2-1", "C2-2","C2-3", "C2-4", "C2-5", "C2-6", "C2-7"
+    ];
+
+    const notesC4 = [
+        "C4-1", "C4-2","C4-3", "C4-4", "C4-5", "C4-6", "C4-7"
+    ];
+
+
+    const notesC5 = [
+        "C5-1", "C5-2","C5-3", "C5-4", "C5-5", "C5-6", "C5-7"
+    ];
+
+
+
+    const createIntervalC1 = () => {
+        return setInterval(() => {
+            let maximo = notesC1.length - 1;
+            let minimo = 0;
+            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+            console.log(notesC1[num]);
+            playSound('C1/' + notesC1[num]);
+        }, 7000);
+    }
+
+
+    const createIntervalC2 = (time) => {
+        return setInterval(() => {
+            let maximo = notesC2.length - 1;
+            let minimo = 0;
+            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+            console.log(notesC2[num]);
+            playSound('C2/' + notesC2[num]);
+        }, time);
+    }
+
+
+
+    const createIntervalC4 = (time) => {
+        return setInterval(() => {
+            let maximo = notesC4.length - 1;
+            let minimo = 0;
+            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+            console.log(notesC4[num]);
+            playSound('C4/' + notesC4[num]);
+        }, time);
+    }
+
+
+    const createIntervalC5 = (time) => {
+        return setInterval(() => {
+            let maximo = notesC5.length - 1;
+            let minimo = 0;
+            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+            console.log(notesC5[num]);
+            playSound('C5/' + notesC5[num]);
+        }, time);
+    }
+
+
+
+
+
+
+
+
+
+
+    const execution2min = () => {
+
+        console.log("2 min");
+        
+        let maximo = notesC1.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(notesC1[num]);
+        playSound('C1/' + notesC1[num]);
+
+    }
+
+
+    const execution1min = () => {
+
+    }
+
+
+
+    const start = () => {
+        console.log("Inicia la APP...");
+
+
+        // const intervalC2 = createIntervalC2(6000);
+        // const intervalC4_1 = createIntervalC4(1000);
+        // const intervalC4_2 = createIntervalC4(500);
+        // const intervalC5 = createIntervalC5(2000);
+
+
+        setInterval(execution2min, 2 * 60 * 1000);
+       
+
+
+
+    }
+
+
+
+
+    
+    
+
+
+    const find = () => {
+
+        console.log("pasaaa");
+
+    } 
+
+
+
+
+    document.addEventListener('DOMContentLoaded', find);
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
