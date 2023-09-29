@@ -2,38 +2,19 @@
 <html>
 <head>
     <title>Piano Virtual</title>
-    <style>
-        /* Estilos para las teclas del piano */
-        .white-key {
-            width: 50px;
-            height: 200px;
-            background-color: white;
-            border: 1px solid black;
-            display: inline-block;
-            margin-right: 5px;
-        }
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        .black-key {
-            width: 30px;
-            height: 120px;
-            background-color: black;
-            border: 1px solid black;
-            display: inline-block;
-            margin-right: 2px;
-            margin-left: -15px;
-        }
-    </style>
+
+
 </head>
 <body>
 
-    <a href="#" onclick="start()"> Inicio</a>
-
-
-
-    <h1>Reloj</h1>
+    <h1 class="text-3xl font-bold">Music Generator</h1>
+    
+    <button onclick="start()"> Start</button>
+    
     <div id="reloj"></div>
-
-
 
 <script>
 
