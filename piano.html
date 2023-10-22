@@ -53,17 +53,6 @@
 
 <script>
 
-    // Función para manejar el evento de presionar una tecla
-    function playSound(note) {
-
-        const audio = new Audio(`sounds/${note}.mp3`); // Asegúrate de tener archivos de sonido en una carpeta llamada 'sounds'
-        audio.muted = false;
-        audio.play();
-
-    }
-
-
-
 
 
     const notesC1 = [
@@ -100,6 +89,19 @@
     
 
 
+    // Función para manejar el evento de presionar una tecla
+    function playSound(note) {
+        const audio = new Audio(`sounds/${note}.mp3`); // Asegúrate de tener archivos de sonido en una carpeta llamada 'sounds'
+        audio.muted = false;
+        audio.play();
+    }
+
+
+
+
+
+
+
 
 
 
@@ -109,164 +111,118 @@
      * Inteval with music
      * 
      */
+    // const createIntervalC1 = () => {
+    //     let maximo = notesC1.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC1[num]);
+    //     playSound('C1/' + notesC1[num]);
+    // }
+    // const createIntervalC2 = () => {
+    //     let maximo = notesC2.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC2[num]);
+    //     playSound('C2/' + notesC2[num]);
+    // }
+    // const createIntervalC3 = () => {
+    //     let maximo = notesC3.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC3[num]);
+    //     playSound('C3/' + notesC3[num]);
+    // }
+    // const createIntervalC4 = () => {
+    //     let maximo = notesC4.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC4[num]);
+    //     playSound('C4/' + notesC4[num]);
+    // }
+    // const createIntervalC5 = () => {
+    //     let maximo = notesC5.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC5[num]);
+    //     playSound('C5/' + notesC5[num]);
+    // }
+    // const createIntervalC6 = () => {
+    //     let maximo = notesC6.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC6[num]);
+    //     playSound('C6/' + notesC6[num]);
+    // }
+    // const createIntervalC7 = () => {
+    //     let maximo = notesC7.length - 1;
+    //     let minimo = 0;
+    //     let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+    //     console.log(notesC7[num]);
+    //     playSound('C7/' + notesC7[num]);
+    // }
+
+
+
+
+
+    const playRandom = (path, noteArr) => {
+        let maximo = noteArr.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(noteArr[num]);
+        playSound(path + noteArr[num]);
+    }
+
+
+    const playSimple = (path, noteArr, number) => {
+        if(number <= (noteArr.length - 1)){
+            console.log(noteArr[number]);
+            playSound(path + noteArr[number]);
+        }
+    }
     
-    const createIntervalC1 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC1.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC1[num]);
-            playSound('C1/' + notesC1[num]);
-        //}, time);
-    }
-
-    const createIntervalC2 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC2.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC2[num]);
-            playSound('C2/' + notesC2[num]);
-        //}, time);
-    }
-
-    const createIntervalC3 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC3.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC3[num]);
-            playSound('C3/' + notesC3[num]);
-        //}, time);
-    }
-
-    const createIntervalC4 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC4.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC4[num]);
-            playSound('C4/' + notesC4[num]);
-        //}, time);
-    }
-
-    const createIntervalC5 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC5.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC5[num]);
-            playSound('C5/' + notesC5[num]);
-        //}, time);
-    }
-
-    const createIntervalC6 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC6.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC6[num]);
-            playSound('C6/' + notesC6[num]);
-        //}, time);
-    }
-
-
-    const createIntervalC7 = (time = null) => {
-        //return setInterval(() => {
-            let maximo = notesC7.length - 1;
-            let minimo = 0;
-            let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
-            console.log(notesC7[num]);
-            playSound('C7/' + notesC7[num]);
-        //}, time);
-    }
 
 
 
 
-
-
-    let arrTempo = [
-        { 
-            time: 2,
-            method: createIntervalC4,
-        },
-        { 
-            time: 5,
-            method: createIntervalC5,
-        },
-        { 
-            time: 4,
-            method: createIntervalC6,
-        },
-        { 
-            time: 10,
-            method: createIntervalC7,
-        },
+    // let arrTempo = [
+    //     { 
+    //         time: 2,
+    //         method: createIntervalC4,
+    //     },
+    //     { 
+    //         time: 5,
+    //         method: createIntervalC5,
+    //     },
+    //     { 
+    //         time: 4,
+    //         method: createIntervalC6,
+    //     },
+    //     { 
+    //         time: 10,
+    //         method: createIntervalC7,
+    //     },
         
-    ];
-
-
-
-    
-    
-
-    
+    // ];
 
 
 
 
-
-    
-
-
-
-    // Función para mostrar la hora actual y lanzar un mensaje
-    function mostrarHoraYMensaje() {
-
-        const reloj = document.getElementById("reloj");
-        const horaActual = obtenerHoraActual();
-        reloj.textContent = `Hora actual: ${horaActual}`;
-
-
-
-        // Cambia el mensaje cada 5 segundos
-        // const mensaje = (new Date().getSeconds() % 5 === 0) ? true : false;
-        // if (mensaje) {
-        //     createIntervalC5();
-        // }
-
-        // arrTempo.forEach((e) => {
-        //     const mensaje = (new Date().getSeconds() % e.time === 0) ? true : false;
-        //     if (mensaje) {
-        //         console.log("time: " , e.time);
-        //         e.method();
-        //     }
-        // });
-
-
-        // for(e of arrTempo){
-        //     const mensaje = (new Date().getSeconds() % e.time === 0) ? true : false;
-        //     if (mensaje) {
-        //         console.log("time: " , e.time);
-        //         e.method();
-        //     }
-        // }
-
-
-    }
-
-
-
-
-
-    // **************   NEW
-
-    
-
-
+    /**
+     * Variables
+     */
     let tempoMain = 10;
-    let tempoCurrent = 0;
+    let tempoCurrent1 = 0;
+
+    let tempo1;
+    let tempo2;
+
+
+    // Define el ritmo (1 para tocar, 0 para silencio)
+    //const rhythmPattern = [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
+    const rhythmPattern = [1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0];
+    
+
 
 
 
@@ -287,40 +243,20 @@
         tempoMain = horaActual;
     }
 
-    
 
 
 
 
 
 
-
-    const checkDisplayTempo = (tempoCurrent) => {
-
-        console.log(tempoCurrent);
-        if(tempoCurrent === 10){
-            clearInterval(tempo1);
+    const tempoSound = (elem, path, arr, item) => {
+        if(elem === 1){
+            //playRandom('C5/', notesC5);
+            playSimple(path, arr, item);
+            console.log("tempo: ", tempoCurrent1);
+            tempoCurrent1++;
         }
-
     }
-
-
-
-    const displayTempo = () => {
-
-        //Reloj
-        // const reloj = document.getElementById("reloj");
-        // const horaActual = getNowHours();
-        // reloj.textContent = `Hora actual: ${horaActual}`;
-
-
-
-        console.log("tempo: ", tempoCurrent);
-        tempoCurrent += 1;
-        checkDisplayTempo(tempoCurrent);
-
-    }
-
 
 
 
@@ -330,8 +266,15 @@
     
 
 
-    const start = () => {
+    
+    let counter = 0;
+    let counter2 = 0;
+
+    const start = async() => {
         console.log("Inicia la APP...");
+
+
+        
 
         // No borrar: OK lo primero
         // const intervalC2 = createIntervalC2(6000);
@@ -347,13 +290,31 @@
         // setInterval(mostrarHoraYMensaje, 1000);
 
 
-
-
         // Actualizar la hora y el mensaje cada segundo
-        tempo1 = setInterval(displayTempo, 1000);    
+        //tempo1 = setInterval(tempoSound, 1000); 
+        
+        //tempo2 = setInterval(displayTempo, 1000); 
+
+
+
+        if(counter < rhythmPattern.length){
+            console.log("iteracion: ", counter);
+            await tempoSound(rhythmPattern[counter], 'C6/', notesC6, 4);
+            counter++;
+            setTimeout(start, 1000);
+        }else{
+            counter = 0;
+            //setTimeout(start, 1000);
+        }
+
+
+
 
 
     }
+
+
+
 
 
 

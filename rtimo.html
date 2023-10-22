@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ritmo de Música con JavaScript</title>
+</head>
+<body>
+    <button id="playButton">Reproducir Ritmo</button>
+    
+    <script>
+        // Inicializa el contexto de audio
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Crea un oscilador para el ritmo
+        const oscillator = audioContext.createOscillator();
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+        
+        // Crea el programador del ritmo
+        const rhythmScheduler = audioContext.createConstantSource();
+        rhythmScheduler.offset.setValueAtTime(1, audioContext.currentTime);
+        
+        // Conecta el oscilador al programador del ritmo y al destino de audio
+        oscillator.connect(audioContext.destination);
+        rhythmScheduler.connect(oscillator.frequency);
+        
+        // Define el ritmo (1 para tocar, 0 para silencio)
+        const rhythmPattern = [1, 0, 1, 0, 1, 1, 0, 1];
+        
+        // Configura el evento de programación del ritmo
+        const rhythmInterval = 0.5; // Intervalo de tiempo entre cada ritmo (en segundos)
+        let rhythmIndex = 0;
+        rhythmScheduler.start();
+        rhythmScheduler.onended = function() {
+            rhythmScheduler.start();
+        };
+        function scheduleRhythm() {
+            if (rhythmPattern[rhythmIndex] === 1) {
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1); // Duración del ritmo
+            }
+            rhythmIndex = (rhythmIndex + 1) % rhythmPattern.length;
+            setTimeout(scheduleRhythm, rhythmInterval * 1000);
+        }
+        
+        // Evento para iniciar el ritmo
+        document.getElementById('playButton').addEventListener('click', function() {
+            scheduleRhythm();
+        });
+    </script>
+</body>
+</html>
