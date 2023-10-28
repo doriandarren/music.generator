@@ -1,89 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Piano Virtual</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.0.0"> </script>
 
 </head>
-
 <body>
-    <h1>LALALA</h1>
+
+    <div class="container mt-20 ml-20">
+
+        <h1 class="text-[500] font-bold mb-5">Music Generator</h1>
 
 
-    <a href="#" onclick="play()">Start</a>
+        <div id="reloj" class="text-3xl"></div>
 
 
+        <div class="grid grid-cols-6">
 
-
-    <script>
-
-
-        const TWINKLE_TWINKLE = {
-            notes: [
-                {pitch: 60, startTime: 0.0, endTime: 0.5},
-                {pitch: 60, startTime: 0.5, endTime: 1.0},
-                {pitch: 67, startTime: 1.0, endTime: 1.5},
-                {pitch: 67, startTime: 1.5, endTime: 2.0},
-                {pitch: 69, startTime: 2.0, endTime: 2.5},
-                {pitch: 69, startTime: 2.5, endTime: 3.0},
-                {pitch: 67, startTime: 3.0, endTime: 4.0},
-                {pitch: 65, startTime: 4.0, endTime: 4.5},
-                {pitch: 65, startTime: 4.5, endTime: 5.0},
-                {pitch: 64, startTime: 5.0, endTime: 5.5},
-                {pitch: 64, startTime: 5.5, endTime: 6.0},
-                {pitch: 62, startTime: 6.0, endTime: 6.5},
-                {pitch: 62, startTime: 6.5, endTime: 7.0},
-                {pitch: 60, startTime: 7.0, endTime: 8.0},  
-            ],
-            totalTime: 8
-        };
-
-
-        let rnn_steps = 20;
-        let rnn_temperature = 1.5;
-
-
-        // Initialize the model.
-        music_rnn = new mm.MusicRNN('https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn');
-        music_rnn.initialize();
-
-        // Create a player to play the sequence we'll get from the model.
-        rnnPlayer = new mm.Player();
-
-        
-        
-        function play() {
-            if (rnnPlayer.isPlaying()) {
-                rnnPlayer.stop();
-                return;
-            }
-
+            <div class="col-span-2">
                 
-            // The model expects a quantized sequence, and ours was unquantized:
-            const qns = mm.sequences.quantizeNoteSequence(TWINKLE_TWINKLE, 4);
-            music_rnn
-            .continueSequence(qns, rnn_steps, rnn_temperature)
-            .then((sample) => {
-                //console.log(rnnPlayer);
-                return rnnPlayer.start(sample);
-            });
+            </div>
+            <div class="col-span-2">
+                <button class="text-xl px-4 py-2 leading-none border rounded text-white bg-blue-600 border-white hover:bg-blue-500 mt-4 lg:mt-0" onclick="start()"> Start</button>
+            </div>
+        
+        </div>
+
+    </div>
+
+<script>
 
 
-            //rnnPlayer.start();
 
-            
+    const notesC1 = [
+        "C1-1", "C1-1-1", "C1-2", "C1-2-1", "C1-3", "C1-4", "C1-4-1", "C1-5", "C1-5-1", "C1-6", "C1-6-1", "C1-7"
+    ];
+
+    const notesC2 = [
+        "C2-1", "C2-1-1", "C2-2", "C2-2-1", "C2-3", "C2-4", "C2-4-1", "C2-5", "C2-5-1", "C2-6", "C2-6-1", "C2-7"
+    ];
+    
+    const notesC3 = [
+        "C3-1", "C3-1-1", "C3-2", "C3-2-1", "C3-3", "C3-4", "C3-4-1", "C3-5", "C3-5-1", "C3-6", "C3-6-1", "C3-7"
+    ];
+
+    const notesC4 = [
+        "C4-1", "C4-1-1", "C4-2", "C4-2-1", "C4-3", "C4-4", "C4-4-1", "C4-5", "C4-5-1", "C4-6", "C4-6-1", "C4-7"
+    ];
+
+
+    const notesC5 = [
+        "C5-1", "C5-1-1", "C5-2", "C5-2-1", "C5-3", "C5-4", "C5-4-1", "C5-5", "C5-5-1", "C5-6", "C5-6-1", "C5-7"
+    ];
+
+
+    const notesC6 = [
+        "C6-1", "C6-1-1", "C6-2", "C6-2-1", "C6-3", "C6-4", "C6-4-1", "C6-5", "C6-5-1", "C6-6", "C6-6-1", "C6-7"
+    ];
+
+    const notesC7 = [
+        "C7-1", "C7-1-1", "C7-2", "C7-2-1", "C7-3", "C7-4", "C7-4-1", "C7-5", "C7-5-1", "C7-6", "C7-6-1", "C7-7"
+    ];
+
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     *
+     * Inteval with music
+     * 
+     */
+
+
+    // Función para manejar el evento de presionar una tecla
+    function playSound(note) {
+        const audio = new Audio(`sounds/${note}.mp3`); // Asegúrate de tener archivos de sonido en una carpeta llamada 'sounds'
+        audio.muted = false;
+        audio.play();
+    }
+
+    const playRandom = (path, noteArr) => {
+        let maximo = noteArr.length - 1;
+        let minimo = 0;
+        let num = Math.floor(Math.random() * ((maximo+1) - minimo) + minimo);
+        console.log(noteArr[num]);
+        playSound(path + noteArr[num]);
+    }
+
+
+    const playSimple = (path, noteArr, number) => {
+        if(number <= (noteArr.length - 1)){
+            console.log(noteArr[number]);
+            playSound(path + noteArr[number]);
+        }
+    }
+    
+
+
+    /**
+     * Variables
+     */
+    let tempoMain = 10;
+    let tempoCurrent1 = 0;
+
+    let tempo1;
+    let tempo2;
+
+    let counter = 0;
+    let counter2 = 0;
+
+
+
+
+    /**
+     * Define el ritmo (1 para tocar, 0 para silencio)
+     */
+    //const rhythmPattern = [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
+    const rhythmPattern = [1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0];
+    
+
+
+
+
+
+    const tempoSound = (elem, path, arr, item) => {
+        if(elem === 1){
+            //playRandom('C5/', notesC5);
+            playSimple(path, arr, item);
+            console.log("tempo: ", tempoCurrent1);
+            tempoCurrent1++;
+        }
+    }
+
+    const start = async() => {
+        console.log("Inicia la APP...");
+
+        if(counter < rhythmPattern.length){
+            console.log("iteracion: ", counter);
+            await tempoSound(rhythmPattern[counter], 'C6/', notesC6, 4);
+            counter++;
+            setTimeout(start, 1000);
+        }else{
+            counter = 0;
+            //setTimeout(start, 1000);
         }
 
+    }
 
 
 
 
 
-    </script>
+
+
+
+    /**
+     * Show Time
+     */ 
+    function getNowHours() {
+        const ahora = new Date();
+        const horas = String(ahora.getHours()).padStart(2, '0');
+        const minutos = String(ahora.getMinutes()).padStart(2, '0');
+        const segundos = String(ahora.getSeconds()).padStart(2, '0');
+        return `${horas}:${minutos}:${segundos}`;
+    }
+
+
+    const showTime = () => {
+        const reloj = document.getElementById("reloj");
+        const horaActual = getNowHours();
+        reloj.textContent = `Hora actual: ${horaActual}`;
+        tempoMain = horaActual;
+    }
+
+
+    const find = () => {
+        setInterval(showTime, 1000);  
+    } 
+    document.addEventListener('DOMContentLoaded', find);
+
+
+
+</script>
 
 </body>
 </html>
