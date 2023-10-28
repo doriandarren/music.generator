@@ -34,6 +34,19 @@
 
 
 
+    /**
+    * Variables
+    */
+    //let tempoMain = 10;
+    let tempoCurrent1 = 0;
+
+    let tempo1;
+    let tempo2;
+
+    let counter = 0;
+    let counter2 = 0;
+
+
     const notesC1 = [
         "C1-1", "C1-1-1", "C1-2", "C1-2-1", "C1-3", "C1-4", "C1-4-1", "C1-5", "C1-5-1", "C1-6", "C1-6-1", "C1-7"
     ];
@@ -66,6 +79,20 @@
 
 
     
+
+
+
+    /**
+     * Define el ritmo (1 para tocar, 0 para silencio)
+     */
+    
+
+    const tempoDuration = 40;
+    
+
+    //const rhythmPattern = [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
+    const rhythmPattern = [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0];
+    const rhythmPattern2 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0];
 
 
     
@@ -112,26 +139,7 @@
     
 
 
-    /**
-     * Variables
-     */
-    let tempoMain = 10;
-    let tempoCurrent1 = 0;
-
-    let tempo1;
-    let tempo2;
-
-    let counter = 0;
-    let counter2 = 0;
-
-
-
-
-    /**
-     * Define el ritmo (1 para tocar, 0 para silencio)
-     */
-    //const rhythmPattern = [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
-    const rhythmPattern = [1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0];
+   
     
 
 
@@ -139,28 +147,69 @@
 
 
     const tempoSound = (elem, path, arr, item) => {
+        
         if(elem === 1){
             //playRandom('C5/', notesC5);
             playSimple(path, arr, item);
             console.log("tempo: ", tempoCurrent1);
             tempoCurrent1++;
         }
+
     }
+
+
+
+
+
+
+    let i = 0;
+    let j = 0;
+
+
 
     const start = async() => {
         console.log("Inicia la APP...");
 
-        if(counter < rhythmPattern.length){
+       
+        
+        
+        if(counter < tempoDuration){
             console.log("iteracion: ", counter);
-            await tempoSound(rhythmPattern[counter], 'C6/', notesC6, 4);
+
+            if(i > (rhythmPattern.length - 1)){
+                i = 0;
+            }
+
+
+            if(j > (rhythmPattern2.length - 1)){
+                j = 0;
+            }
+            
+            await tempoSound(rhythmPattern[i], 'C6/', notesC6, 4);
+            await tempoSound(rhythmPattern2[j], 'C3/', notesC3, 4);
+
             counter++;
+            i++;
+            j++;
             setTimeout(start, 1000);
         }else{
             counter = 0;
             //setTimeout(start, 1000);
         }
 
+
+
+
+        
+
     }
+
+
+
+
+
+
+
 
 
 
