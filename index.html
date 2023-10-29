@@ -91,8 +91,41 @@
     
 
     //const rhythmPattern = [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0];
-    const rhythmPattern = [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0];
-    const rhythmPattern2 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0];
+    
+
+    const objRhythm = {
+        pattern: [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+        i: 0,
+        checkIndex: function(){
+            if(this.i > (this.pattern.length - 1)){
+                this.i = 0;
+            }
+        } 
+    };
+
+
+    
+    const objRhythm2 = {
+        pattern: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        i: 0,
+        checkIndex: function(){
+            if(this.i > (this.pattern.length - 1)){
+                this.i = 0;
+            }
+        } 
+    };
+
+
+    const objRhythm3 = {
+        //pattern: [1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        pattern: [1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+        i: 0,
+        checkIndex: function(){
+            if(this.i > (this.pattern.length - 1)){
+                this.i = 0;
+            }
+        } 
+    };
 
 
     
@@ -162,45 +195,48 @@
 
 
 
-    let i = 0;
-    let j = 0;
+    const onStart = async() => {
 
-
-
-    const start = async() => {
-        console.log("Inicia la APP...");
-
-       
-        
-        
-        if(counter < tempoDuration){
-            console.log("iteracion: ", counter);
-
-            if(i > (rhythmPattern.length - 1)){
-                i = 0;
-            }
-
-
-            if(j > (rhythmPattern2.length - 1)){
-                j = 0;
-            }
+        if(counter < tempoDuration){    
             
-            await tempoSound(rhythmPattern[i], 'C6/', notesC6, 4);
-            await tempoSound(rhythmPattern2[j], 'C3/', notesC3, 4);
+            //Check value index to final
+            objRhythm.checkIndex();
+            objRhythm2.checkIndex();
+            objRhythm3.checkIndex();
+            
+            
+
+            await tempoSound(objRhythm.pattern[objRhythm.i], 'Piano/C6/', notesC6, 4);
+            await tempoSound(objRhythm2.pattern[objRhythm2.i], 'Piano/C3/', notesC3, 4);
+            await tempoSound(objRhythm3.pattern[objRhythm3.i], 'Piano/C7/', notesC7, 4);
+
+            
 
             counter++;
-            i++;
-            j++;
+
+            // increment i into obj
+            objRhythm.i += 1;
+            objRhythm2.i += 1;
+            objRhythm3.i += 1;
+
             setTimeout(start, 1000);
+
         }else{
             counter = 0;
             //setTimeout(start, 1000);
         }
 
+    }
 
 
 
-        
+    const start = async() => {
+
+        console.log("Inicia la APP...");
+
+        await onStart();
+
+        console.log("Fin APP!!!");
 
     }
 
