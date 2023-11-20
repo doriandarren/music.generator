@@ -117,8 +117,7 @@
 
 
     const objRhythm3 = {
-        //pattern: [1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-        pattern: [1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+        pattern: [1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
         i: 0,
         checkIndex: function(){
             if(this.i > (this.pattern.length - 1)){
@@ -267,7 +266,7 @@
 
 
     const showTime = () => {
-        const reloj = document.getElementById("reloj");
+        const reloj = document.querySelector("#reloj");
         const horaActual = getNowHours();
         reloj.textContent = `Hora actual: ${horaActual}`;
         tempoMain = horaActual;
